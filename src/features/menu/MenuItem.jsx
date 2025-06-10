@@ -1,8 +1,29 @@
 import { formatCurrency } from "../../utils/helpers";
 import Button from "../../ui/Button";
+import { addItemThunk } from "../cart/cartSlice";
+import { show } from "../../utils/toastSlice";
+import { useDispatch } from "react-redux";
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const dispatch = useDispatch();
+
+  async function handleAddItem() {
+    if (soldOut) return;
+    const alreadyAdded = await dispatch(addItemThunk(pizza));
+
+    if (!alreadyAdded) {
+      dispatch(
+        show({
+          message: "Item Already in cart",
+          duration: 3000,
+          isError: true,
+        }),
+      );
+      return;
+    }
+    dispatch(show({ message: "Added item to cart", duration: 3000 }));
+  }
 
   return (
     <li className="flex gap-4 py-4">
@@ -25,10 +46,16 @@ function MenuItem({ pizza }) {
             </p>
           )}
 
-          <Button isSmall={true}>
-            <span className="block sm:hidden">+🛒</span>
-            <span className="hidden sm:block">Add to Cart</span>
-          </Button>
+          {!soldOut && (
+            <Button
+              isSmall={true}
+              onClick={async () => await handleAddItem()}
+              disabled={soldOut}
+            >
+              <span className="block sm:hidden">+🛒</span>
+              <span className="hidden sm:block">Add to Cart</span>
+            </Button>
+          )}
         </div>
       </div>
     </li>

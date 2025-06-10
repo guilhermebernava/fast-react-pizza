@@ -9,7 +9,7 @@ function Button({
   noBackground = false,
 }) {
   let className =
-    "rounded-lg px-3 py-2 font-medium uppercase tracking-wide transform transition hover:scale-105 focus-yellow active:opacity-70 disabled:cursor-not-allowed bg-yellow-400";
+    "rounded-lg px-3 py-2 font-medium uppercase tracking-wide transform transition hover:scale-105 focus-yellow active:opacity-70 disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:cursor-not-allowed bg-yellow-400 disabled:hover:scale-100";
 
   if (isSmall) className += " text-xs px-2 py-1.5";
 

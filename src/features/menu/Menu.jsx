@@ -6,6 +6,7 @@ function Menu() {
   //esse HOOK serve para devolver os dados da function
   //LOADER que traz os dados da API.
   const menu = useLoaderData();
+
   return (
     <ul className="divide-y divide-stone-200 px-4">
       {menu.map((pizza) => (

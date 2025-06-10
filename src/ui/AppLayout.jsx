@@ -2,6 +2,7 @@ import Header from "./Header";
 import CartOverview from "../features/cart/CartOverview";
 import Loader from "./Loader";
 import { Outlet, useNavigation } from "react-router-dom";
+import Toast from "./Toast";
 
 function AppLayout() {
   const navigation = useNavigation();
@@ -14,6 +15,7 @@ function AppLayout() {
       <Header />
       <div className="overflow-scroll">
         <main className="mx-auto max-w-3xl">
+          <Toast />
           <Outlet />
         </main>
       </div>

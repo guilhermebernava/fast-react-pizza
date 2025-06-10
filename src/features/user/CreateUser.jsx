@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Button from "../../ui/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "./userSlice";
 import { useNavigate } from "react-router-dom";
 
 function CreateUser() {
   const [username, setUsername] = useState("");
+  const name = useSelector((store) => store.user.username);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ function CreateUser() {
         onChange={(e) => setUsername(e.target.value)}
       />
 
-      {username !== "" && (
+      {name !== "" && (
         <div className="my-8">
           <Button className="bg-black">Start ordering</Button>
         </div>

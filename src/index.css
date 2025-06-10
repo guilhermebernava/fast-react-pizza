@@ -16,6 +16,32 @@
   }
 }
 
+@layer utilities {
+  .fade-in-up {
+    @apply translate-y-2 opacity-0 transition-all duration-300 ease-out;
+    animation: fadeInUp 0.3s forwards;
+  }
+
+  .fade-out-up {
+    @apply translate-y-0 opacity-100 transition-all duration-300 ease-in;
+    animation: fadeOutUp 0.3s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOutUp {
+    to {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+    }
+  }
+}
+
 * {
   box-sizing: border-box;
 }
