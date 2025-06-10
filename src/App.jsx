@@ -8,6 +8,7 @@ import CreateOrder, {
 import Order, { loader as orderLoader } from "./features/order/Order";
 import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
+import ProtectedRoute from "./protectedRoute";
 
 // nova forma de criar rotas que serve para
 //lidar com FECTH DATA atraves das rotas.
@@ -27,22 +28,41 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu",
-        element: <Menu />,
+        element: (
+          <ProtectedRoute>
+            <Menu />
+          </ProtectedRoute>
+        ),
         //essa é a forma que passamos a FUNCTION de pegar dados API
         loader: menuLoader,
         errorElement: <Error />,
       },
-      { path: "/cart", element: <Cart /> },
+      {
+        path: "/cart",
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
+      },
       {
         path: "/order/new",
-        element: <CreateOrder />,
+        element: (
+          <ProtectedRoute>
+            <CreateOrder />
+          </ProtectedRoute>
+        ),
         errorElement: <Error />,
         //toda vez que o form do REACT ROUTER der submit ele vai chamar essa function
         action: createOrderAction,
       },
       {
         path: "/order/:orderId",
-        element: <Order />,
+        element: (
+          <ProtectedRoute>
+            <Order />
+          </ProtectedRoute>
+        ),
         errorElement: <Error />,
         loader: orderLoader,
       },

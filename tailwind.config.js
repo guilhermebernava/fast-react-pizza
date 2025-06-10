@@ -14,6 +14,9 @@ export default {
       height: {
         screen: "100dvh",
       },
+      backgroundColor: {
+        none: "none",
+      },
     },
   },
   plugins: [],

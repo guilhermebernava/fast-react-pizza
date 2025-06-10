@@ -4,19 +4,18 @@ function Button({
   children,
   disabled,
   to,
+  onClick,
   isSmall = false,
   noBackground = false,
 }) {
   let className =
-    "rounded-lg px-3 py-2 font-medium uppercase tracking-wide transform transition hover:scale-105 focus-yellow active:opacity-70 disabled:cursor-not-allowed";
+    "rounded-lg px-3 py-2 font-medium uppercase tracking-wide transform transition hover:scale-105 focus-yellow active:opacity-70 disabled:cursor-not-allowed bg-yellow-400";
 
   if (isSmall) className += " text-xs px-2 py-1.5";
 
   if (noBackground) {
     className +=
-      " border-2 border-stone-300 bg-transparent hover:font-bold hover:text-stone-200 text-stone-800 hover:bg-red-500 focus-stone-200";
-  } else {
-    className += " bg-yellow-700 text-white";
+      " bg-transparent border-2 border-stone-300 hover:font-bold hover:text-stone-200 text-stone-800 hover:bg-red-500 focus-stone-200";
   }
 
   if (to) {
@@ -31,7 +30,7 @@ function Button({
   }
 
   return (
-    <button disabled={disabled} className={className}>
+    <button disabled={disabled} className={className} onClick={onClick}>
       {children}
     </button>
   );
