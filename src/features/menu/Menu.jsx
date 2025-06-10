@@ -7,7 +7,7 @@ function Menu() {
   //LOADER que traz os dados da API.
   const menu = useLoaderData();
   return (
-    <ul>
+    <ul className="divide-y divide-stone-200 px-4">
       {menu.map((pizza) => (
         <MenuItem pizza={pizza} key={pizza.id} />
       ))}
