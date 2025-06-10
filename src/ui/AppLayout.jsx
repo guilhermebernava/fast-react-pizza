@@ -4,18 +4,18 @@ import Loader from "./Loader";
 import { Outlet, useNavigation } from "react-router-dom";
 
 function AppLayout() {
-  //serve para conseguir identificar se a rota esta fazendo fecthing do dado.
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
 
   return (
-    <div className="layout">
+    <div className="flex min-h-screen flex-col">
       {isLoading && <Loader />}
 
       {!isLoading && (
         <>
           <Header />
-          <main>
+
+          <main className="flex flex-1 flex-col overflow-auto">
             <Outlet />
           </main>
 
