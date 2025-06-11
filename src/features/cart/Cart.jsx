@@ -5,10 +5,12 @@ import EmptyCart from "./EmptyCart";
 import { useSelector } from "react-redux";
 import { clearCart } from "./cartSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const username = useSelector((store) => store.user.username);
   const cart = useSelector((store) => store.cart.cart);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   return (
@@ -24,7 +26,12 @@ function Cart() {
         {cart.length < 1 && <EmptyCart />}
       </ul>
       <div className="mt-6 space-x-2">
-        <Button to="/order/new">Order pizzas</Button>
+        <Button
+          disabled={cart.length < 1}
+          onClick={() => navigate("/order/new")}
+        >
+          Order pizzas
+        </Button>
         <Button
           noBackground={true}
           onClick={() => {

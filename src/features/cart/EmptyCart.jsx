@@ -1,5 +1,3 @@
-import LinkButton from "../../ui/LinkButton";
-
 function EmptyCart() {
   return (
     <div className="py-8">
